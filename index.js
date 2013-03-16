@@ -9,6 +9,8 @@ var EventEmitter = require('events').EventEmitter,
 		console.log("offline");
 	};
 
+module.exports = offlineEmitter;
+
 
 
 if (document.body.addEventListener) {
@@ -20,6 +22,26 @@ if (document.body.addEventListener) {
 else {
 	/* For IE
 	*/
-	document.body.ononline = emitOnline;
-	document.body.onoffline = isOffline;
+
+	if (document.body.ononline == null) {
+		document.body.ononline = emitOnline;
+	} 
+	else { // if someone already wrote an ononline function
+		tempOnonline = document.body.ononline; // m
+		document.body.ononline = function () {
+			tempOnonline();
+			emitOnline();
+		}
+	}
+
+	if (document.body.ononline == null) {
+		document.body.onoffline = emitOffline;
+	} 
+	else { // if someone already wrote an ononline function
+		tempOnoffline = document.body.onoffline; // m
+		document.body.ononline = function () {
+			tempOnoffline();
+			emitOffline();
+		}
+	}
 }
