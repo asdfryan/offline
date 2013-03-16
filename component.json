@@ -1,0 +1,13 @@
+{
+  "name": "offline",
+  "repo": "asdfryan/offline",
+  "description": "component for handling offline events for engine.io",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
